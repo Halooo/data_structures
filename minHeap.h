@@ -6,23 +6,31 @@
 #define DATASTRUCTURES_MINHEAP_H
 
 #include <vector>
+#include <map>
 #include <iostream>
 
 using namespace std;
 
+template <class T>
 class MinHeap {
 private:
     vector<int> keys;
-//    void bubble_down(int i);
-    void bubble_up(int i);
-//    void heapify();
+    vector<T> values;
+    void bubble_down(const int& i);
+    void bubble_up(const int& i);
+    void heapify();
 
 public:
-    MinHeap();
-    void insert(int key);
-//    int getMin();
-//    void removeMin();
+    MinHeap<T>();
+    MinHeap<T>(const vector<int>& keys, const vector<T>& values);
+    MinHeap<T>(const map<int, T>& pairs);
+    void insert(const int& key, const T& value);
+    T getMin();
+    void removeMin();
 
-    friend ostream& operator<<(ostream& out, const MinHeap& minHeap);
+    template<class Y>
+    friend ostream& operator<<(ostream& out, const MinHeap<Y>& minHeap);
 };
+
+#include "minHeap.cpp"
 #endif //DATASTRUCTURES_MINHEAP_H
