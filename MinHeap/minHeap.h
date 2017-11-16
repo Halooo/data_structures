@@ -16,17 +16,17 @@ class MinHeap {
 private:
     vector<int> keys;
     vector<T> values;
-    void bubble_down(const int& i);
-    void bubble_up(const int& i);
-    void heapify();
+    void bubble_down(const int& i); // O(log n)
+    void bubble_up(const int& i); // O(log n)
+    void heapify(); // O(n log n)
 
 public:
     MinHeap<T>();
     MinHeap<T>(const vector<int>& keys, const vector<T>& values);
     MinHeap<T>(const map<int, T>& pairs);
-    void insert(const int& key, const T& value);
-    T getMin();
-    void removeMin();
+    void insert(const int& key, const T& value); // O(log n)
+    T getMin(); // O(1)
+    void removeMin(); // O(log n)
 
     template<class Y>
     friend ostream& operator<<(ostream& out, const MinHeap<Y>& minHeap);

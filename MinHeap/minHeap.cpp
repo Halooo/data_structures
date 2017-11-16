@@ -97,6 +97,7 @@ void MinHeap<T>::bubble_down(const int &i) {
     }
 }
 
+// O(log n)
 template <class T>
 void MinHeap<T>::removeMin() {
     int len = keys.size();

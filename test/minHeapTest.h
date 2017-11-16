@@ -1,7 +1,7 @@
 //
 // Created by hsun on 11/16/2017.
 //
-#include "../minHeap.h"
+#include "../MinHeap/minHeap.h"
 #include <map>
 #include <vector>
 
