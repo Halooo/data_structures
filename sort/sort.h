@@ -15,8 +15,7 @@ template<class T>
 class Sort {
 private:
     static int choose_pivot1(const int& a, const int& b);
-    static void partition_quick(vector<T> &arr, int low, int high);
-    static void quick_helper(vector<T> &arr, int low, int high);
+    static void partition_quick(vector<T> &arr, size_t left, size_t right);
 public:
     static void quick1(vector<T> &arr);
 };
@@ -24,39 +23,43 @@ public:
 
 template <class T>
 int Sort<T>::choose_pivot1(const int& a, const int& b) {
-    return rand()%(b - a) + a;
+    srand(time(NULL));
+    return rand() % (b - a) + a;
 }
 
 template <class T>
-void Sort<T>::partition_quick(vector<T> &arr, int low, int high) {
-    int i = low, j = high;
-//    int pivot = choose_pivot1(low, high);
-    int pivot = (low+high)/2;
-    while (i < j) {
-        while (arr[i] < arr[pivot]) {
-            i++;
+void Sort<T>::partition_quick(vector<T> &arr, size_t left, size_t right) {
+    size_t l = left;
+    size_t r = right - 1;
+    size_t size = right - left;
+
+
+    if (size > 1) {
+        T pivot = arr[rand() % size + l];
+//    int pivot = (low+high)/2;
+//    cout << low << " - " << high << " - " << pivot << endl;
+        while (l < r) {
+            while (arr[r] > pivot && r > l) {
+                r--;
+            }
+            while (arr[l] < pivot && l <= r) {
+                l++;
+            }
+            if (l < r) {
+                iter_swap(arr.begin() + l, arr.begin() + r);
+                l++;
+            }
         }
-        while (arr[j] > arr[pivot]) {
-            j--;
-        }
-        if (i <= j) {
-            iter_swap(arr.begin() + i, arr.begin() + j);
-            i++;
-            j--;
-        }
-    }
-    if (low < j) {
-        partition_quick(arr, low, j);
-    }
-    if (i < high) {
-        partition_quick(arr, i, high);
+
+        partition_quick(arr, left, l);
+        partition_quick(arr, r, right);
     }
 }
 
 
 template <class T>
 void Sort<T>::quick1(vector<T> &arr) {
-    partition_quick(arr, 0, arr.size() - 1);
+    partition_quick(arr, 0, arr.size());
 }
 
 
