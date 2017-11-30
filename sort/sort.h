@@ -5,9 +5,11 @@
 #ifndef DATASTRUCTURES_SORT_H
 #define DATASTRUCTURES_SORT_H
 
+#include <queue>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 
@@ -33,11 +35,8 @@ void Sort<T>::partition_quick(vector<T> &arr, size_t left, size_t right) {
     size_t r = right - 1;
     size_t size = right - left;
 
-
     if (size > 1) {
         T pivot = arr[rand() % size + l];
-//    int pivot = (low+high)/2;
-//    cout << low << " - " << high << " - " << pivot << endl;
         while (l < r) {
             while (arr[r] > pivot && r > l) {
                 r--;
@@ -56,12 +55,9 @@ void Sort<T>::partition_quick(vector<T> &arr, size_t left, size_t right) {
     }
 }
 
-
 template <class T>
 void Sort<T>::quick1(vector<T> &arr) {
     partition_quick(arr, 0, arr.size());
 }
-
-
 
 #endif //DATASTRUCTURES_SORT_H
