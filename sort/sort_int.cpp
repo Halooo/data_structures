@@ -4,7 +4,7 @@
 #include "sort_int.h"
 #include <algorithm>
 
-void SortInt::radix_sort(vector<int> &arr, const int base) {
+void SortInt::radix_sort(vector<int> &arr, const unsigned base) {
     queue<int> bucket[base];
     auto max = *max_element(arr.begin(), arr.end());
     int max_digit = 0, tmp_max = max, curr_digit = 0;
@@ -14,7 +14,7 @@ void SortInt::radix_sort(vector<int> &arr, const int base) {
     }
     while(curr_digit < max_digit) {
         for(auto &i : arr) {
-            int div = pow(base, curr_digit);
+            int div = static_cast<unsigned>(pow(base, curr_digit));
             int num = arr[i];
             int digit_val = (num / div) % base;
             bucket[digit_val].push(num);
@@ -32,7 +32,7 @@ void SortInt::radix_sort(vector<int> &arr, const int base) {
     }
 }
 
-void SortInt::radix(vector<int> &arr, const int base) {
+void SortInt::radix(vector<int> &arr, const unsigned base) {
     vector<int> positive;
     vector<int> negative;
     for (auto &i : arr) {
@@ -53,7 +53,7 @@ void SortInt::radix(vector<int> &arr, const int base) {
 
 void SortInt::count(vector<int> &arr) {
     auto max = *max_element(arr.begin(), arr.end());
-    vector<int> counting(max + 1);
+    vector<int> counting(static_cast<unsigned >(max) + 1);
     vector<int> result(arr.size());
     for (auto &i : arr) {
         ++counting[i];
@@ -70,7 +70,7 @@ void SortInt::count(vector<int> &arr) {
     arr = result;
 }
 
-void SortInt::radix_count_subroutine(vector<int> &arr, const int base, const int exp) {
+void SortInt::radix_count_subroutine(vector<int> &arr, const unsigned base, const int exp) {
     vector<int> counting(base + 1);
     vector<int> result(arr.size());
     for (auto &i : arr) {
@@ -88,7 +88,7 @@ void SortInt::radix_count_subroutine(vector<int> &arr, const int base, const int
     arr = result;
 }
 
-void SortInt::count_radix_sort(vector<int> &arr, const int base) {
+void SortInt::count_radix_sort(vector<int> &arr, const unsigned base) {
     auto max = *max_element(arr.begin(), arr.end());
 
     for (int exp = 1; max / exp > 0; exp *= base) {
@@ -96,7 +96,7 @@ void SortInt::count_radix_sort(vector<int> &arr, const int base) {
     }
 }
 
-void SortInt::count_radix(vector<int> &arr, const int base) {
+void SortInt::count_radix(vector<int> &arr, const unsigned base) {
     vector<int> positive;
     vector<int> negative;
     for (auto &i : arr) {

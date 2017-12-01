@@ -14,12 +14,12 @@ using namespace std;
 
 class SortInt {
 private:
-    static void radix_sort(vector<int> &arr, int base);
-    static void radix_count_subroutine(vector<int> &arr, int base, int exp);
-    static void count_radix_sort(vector<int> &arr, int base);
+    static void radix_sort(vector<int> &arr, unsigned base);
+    static void radix_count_subroutine(vector<int> &arr, unsigned base, int exp);
+    static void count_radix_sort(vector<int> &arr, unsigned base);
 public:
-    static void radix(vector<int> &arr, int base); // O(kn), where k is digit number of largest number
-    static void count_radix(vector<int> &arr, int base);
+    static void radix(vector<int> &arr, unsigned base); // O(kn), where k is digit number of largest number
+    static void count_radix(vector<int> &arr, unsigned base);
     static void count(vector<int> &arr); // O(n + R), where R is the largest number in arr
 };
 
