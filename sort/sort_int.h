@@ -17,6 +17,7 @@ private:
     static void radix_sort(vector<int> &arr, const int base);
 public:
     static void radix(vector<int> &arr, const int base);
+    static void count(vector<int> &arr);
 };
 
 #endif //DATASTRUCTURES_SORT_INT_H

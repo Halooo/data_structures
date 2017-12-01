@@ -24,4 +24,10 @@ void radix_sort_test() {
     for (int i =0;i<a.size();i++) cout << a[i] << ", ";
 }
 
+void count_sort_test() {
+    vector<int> a = {1, 4, 1, 2, 8, 5, 2};
+    SortInt::count(a);
+    for (int i =0;i<a.size();i++) cout << a[i] << ", ";
+
+}
 #endif //DATASTRUCTURES_SORTTEST_H

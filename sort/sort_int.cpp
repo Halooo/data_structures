@@ -44,10 +44,28 @@ void SortInt::radix(vector<int> &arr, const int base) {
     }
     radix_sort(positive, base);
     radix_sort(negative, base);
-    vector<int> tmp;
-    for(int i = 0; i < negative.size(); i++) tmp.emplace_back(i);
+    vector<int> tmp(negative.size());
     transform(negative.begin(), negative.end(), tmp.begin(), [](int x) {return -x;});
     reverse(tmp.begin(), tmp.end());
     tmp.insert(tmp.end(), positive.begin(), positive.end());
     arr = tmp;
+}
+
+void SortInt::count(vector<int> &arr) {
+    auto max = *max_element(arr.begin(), arr.end());
+    vector<int> counting(max + 1);
+    vector<int> result(arr.size());
+    for (auto &i : arr) {
+        ++counting[i];
+    }
+
+    for (int i = 1 ; i < counting.size(); ++i) {
+        counting[i] += counting[i - 1];
+    }
+
+    for (int i = arr.size() - 1; i >= 0; i--) {
+        --counting[arr[i]];
+        result[counting[arr[i]]] = arr[i];
+    }
+    arr = result;
 }
