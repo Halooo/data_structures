@@ -30,4 +30,10 @@ void count_sort_test() {
     for (int i =0;i<a.size();i++) cout << a[i] << ", ";
 
 }
+
+void count_radix_sort_test() {
+    vector<int> a = {-65,-72,4,10,94,5,2,-1,-6,7,1,4,-2,89,21,12,54,17,97};
+    SortInt::radix(a, 10);
+    for (int i =0;i<a.size();i++) cout << a[i] << ", ";
+}
 #endif //DATASTRUCTURES_SORTTEST_H
